@@ -1,5 +1,7 @@
 import _ from 'underscore';
 import { crearDeck } from './usecases/crear-deck';
+import { pedirCarta } from './usecases/pedir-carta';
+import { valorCarta } from './usecases/valor-carta';
 
 /**
  * 2C = 2 de tréboles
@@ -34,28 +36,6 @@ const inicializarJuego = (numJugadores = 2) => {
 
     btnPedir.disabled = false;
     btnDetener.disabled = false;
-}
-
-// Tomar una carta
-const pedirCarta = () => {
-    if (deck.length === 0)  throw 'No hay cartas en el deck';
-
-    let carta = deck[Math.round(Math.random() * (deck.length - 1))]; // Elegimos una carta en una posición aleatoria
-
-    let cartaIndex = deck.findIndex((item) => item === carta); // Buscamos el indice en que está posicionado la carta
-
-    deck.splice(cartaIndex, 1); // Eliminamos la carta indicando su posición ubicada
-
-    return carta;
-}
-
-const valorCarta = ( carta ) => {
-    const valor = carta.substring(0, carta.length - 1); // regresa un nuevo string cortado en base a la posición inicial y un final que podemos definir
-
-    // Si el valor no es un número
-    return ( isNaN(valor) ) ?  
-                (valor === 'A') ? 11 : 10
-                : valor * 1;
 }
 
 // Turno: 0 - primer jugador y el último será la computadora
@@ -94,7 +74,7 @@ const turnoComputadora = ( puntosMinimos ) => {
     let puntosComputadora = 0;
     
     do {
-        const carta = pedirCarta();
+        const carta = pedirCarta(deck);
         puntosComputadora = acumularPuntos(carta, puntosJugadores.length - 1);
         crearCarta(carta, puntosJugadores.length - 1);
 
@@ -109,7 +89,7 @@ const turnoComputadora = ( puntosMinimos ) => {
 
 // Eventos
 btnPedir.addEventListener('click', () => {
-    const carta = pedirCarta();
+    const carta = pedirCarta(deck);
     const puntosJugador = acumularPuntos(carta, 0);
 
     crearCarta(carta, 0);
