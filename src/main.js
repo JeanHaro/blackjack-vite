@@ -89,7 +89,7 @@ const acumularPuntos = ( carta, turno ) => {
 const crearCarta = (carta, turno) => {
     const imgCarta = document.createElement('img');
     imgCarta.classList.add('carta');
-    imgCarta.setAttribute('src', `./src/assets/img/${carta}.png`);
+    imgCarta.setAttribute('src', `./assets/img/${carta}.png`);
     divCartasJugador[turno].appendChild(imgCarta);
 }
 
