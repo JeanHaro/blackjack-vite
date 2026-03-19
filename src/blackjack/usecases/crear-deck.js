@@ -2,7 +2,8 @@ import _ from 'underscore';
 
 // Crea una nueva baraja
 export const crearDeck = (tiposDeCarta, tiposEspeciales) => {
-    deck = [];
+    let deck = [];
+
 
     for (let i = 2; i <= 10; i++) {
         for (let tipo of tiposDeCarta) {
@@ -10,7 +11,7 @@ export const crearDeck = (tiposDeCarta, tiposEspeciales) => {
         }
     }
 
-    for (let tipo of tipos) {
+    for (let tipo of tiposDeCarta) {
         for (let especial of tiposEspeciales) {
             deck.push(especial + tipo);
         }
@@ -18,3 +19,5 @@ export const crearDeck = (tiposDeCarta, tiposEspeciales) => {
 
     return _.shuffle(deck);
 }
+
+// export default crearDeck;

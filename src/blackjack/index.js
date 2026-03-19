@@ -24,7 +24,7 @@ const divCartasJugador = document.querySelectorAll('.divCartas'),
 
 // Esta función inicializa el juego
 const inicializarJuego = (numJugadores = 2) => {
-    deck = crearDeck();
+    deck = crearDeck(tipos, especiales);
 
     puntosJugadores = [];
     for (let i = 0; i < numJugadores; i++) puntosJugadores.push(0);
